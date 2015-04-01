@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		871573FE1ACBB946004FFCFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871573FD1ACBB946004FFCFA /* AppDelegate.swift */; };
-		871574001ACBB946004FFCFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871573FF1ACBB946004FFCFA /* ViewController.swift */; };
+		871574001ACBB946004FFCFA /* AreasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871573FF1ACBB946004FFCFA /* AreasViewController.swift */; };
 		871574031ACBB946004FFCFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871574011ACBB946004FFCFA /* Main.storyboard */; };
 		871574051ACBB946004FFCFA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 871574041ACBB946004FFCFA /* Images.xcassets */; };
 		871574081ACBB946004FFCFA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 871574061ACBB946004FFCFA /* LaunchScreen.xib */; };
 		871574141ACBB947004FFCFA /* XMonstersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871574131ACBB947004FFCFA /* XMonstersTests.swift */; };
+		8715741E1ACBBAEB004FFCFA /* MonstersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8715741D1ACBBAEB004FFCFA /* MonstersViewController.swift */; };
+		871574201ACBBB01004FFCFA /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8715741F1ACBBB01004FFCFA /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +31,15 @@
 		871573F81ACBB946004FFCFA /* XMonsters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMonsters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		871573FC1ACBB946004FFCFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		871573FD1ACBB946004FFCFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		871573FF1ACBB946004FFCFA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		871573FF1ACBB946004FFCFA /* AreasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreasViewController.swift; sourceTree = "<group>"; };
 		871574021ACBB946004FFCFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		871574041ACBB946004FFCFA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		871574071ACBB946004FFCFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8715740D1ACBB947004FFCFA /* XMonstersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XMonstersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		871574121ACBB947004FFCFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		871574131ACBB947004FFCFA /* XMonstersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMonstersTests.swift; sourceTree = "<group>"; };
+		8715741D1ACBBAEB004FFCFA /* MonstersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonstersViewController.swift; sourceTree = "<group>"; };
+		8715741F1ACBBB01004FFCFA /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +82,9 @@
 			isa = PBXGroup;
 			children = (
 				871573FD1ACBB946004FFCFA /* AppDelegate.swift */,
-				871573FF1ACBB946004FFCFA /* ViewController.swift */,
+				871573FF1ACBB946004FFCFA /* AreasViewController.swift */,
+				8715741D1ACBBAEB004FFCFA /* MonstersViewController.swift */,
+				8715741F1ACBBB01004FFCFA /* DataModel.swift */,
 				871574011ACBB946004FFCFA /* Main.storyboard */,
 				871574041ACBB946004FFCFA /* Images.xcassets */,
 				871574061ACBB946004FFCFA /* LaunchScreen.xib */,
@@ -212,7 +218,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				871574001ACBB946004FFCFA /* ViewController.swift in Sources */,
+				871574001ACBB946004FFCFA /* AreasViewController.swift in Sources */,
+				871574201ACBBB01004FFCFA /* DataModel.swift in Sources */,
+				8715741E1ACBBAEB004FFCFA /* MonstersViewController.swift in Sources */,
 				871573FE1ACBB946004FFCFA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +347,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = XMonsters/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -349,6 +358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = XMonsters/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -407,6 +417,7 @@
 				871574191ACBB947004FFCFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8715741A1ACBB947004FFCFA /* Build configuration list for PBXNativeTarget "XMonstersTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +426,7 @@
 				8715741C1ACBB947004FFCFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
