@@ -12,7 +12,7 @@ class AreasViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
   
-  let areaController = AreaController()
+  let areasController = AreasController()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -22,25 +22,25 @@ class AreasViewController: UIViewController {
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     tableView.reloadData()
-    areaController.save()
+    areasController.save()
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     let monstersViewController = segue.destinationViewController as MonstersViewController
-    monstersViewController.area = areaController.areas[tableView.indexPathForSelectedRow()!.row]
+    monstersViewController.area = areasController.areas[tableView.indexPathForSelectedRow()!.row]
   }
 
 }
 
 extension AreasViewController: UITableViewDataSource, UITableViewDelegate {
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return areaController.areas.count
+    return areasController.areas.count
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("AreaCell") as UITableViewCell
     
-    let area = areaController.areas[indexPath.row]
+    let area = areasController.areas[indexPath.row]
     cell.textLabel!.text! = area.name
     cell.detailTextLabel!.text! = "\(area.numberOfCapturedMonsters()) / \(area.monsters.count)"
     
