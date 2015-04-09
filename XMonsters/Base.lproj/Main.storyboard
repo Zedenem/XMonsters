@@ -54,9 +54,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NPh-ze-QA6" secondAttribute="bottom" id="4og-nn-6HH"/>
-                            <constraint firstItem="NPh-ze-QA6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="6Ff-1M-sNo"/>
+                            <constraint firstItem="NPh-ze-QA6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6Ff-1M-sNo"/>
                             <constraint firstItem="NPh-ze-QA6" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="Hh7-1G-anE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="NPh-ze-QA6" secondAttribute="trailing" constant="-16" id="YcU-p1-EMx"/>
+                            <constraint firstAttribute="trailing" secondItem="NPh-ze-QA6" secondAttribute="trailing" id="YcU-p1-EMx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="FFX Monsters Checklist" id="ffO-F7-yqE"/>
@@ -97,6 +97,7 @@
                                                 </label>
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="A5G-30-ugo">
                                                     <rect key="frame" x="498" y="13" width="94" height="29"/>
+                                                    <color key="tintColor" red="0.56078431370000004" green="0.31372549020000001" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="capturedStepperValueChanged:" destination="UiI-jt-ueu" eventType="valueChanged" id="16r-XK-mfe"/>
                                                     </connections>
@@ -136,8 +137,8 @@
                         <constraints>
                             <constraint firstItem="n49-r8-IhJ" firstAttribute="top" secondItem="zzk-Ge-1Kj" secondAttribute="topMargin" id="6x9-hz-a0I"/>
                             <constraint firstItem="Ibq-Vz-TsV" firstAttribute="top" secondItem="n49-r8-IhJ" secondAttribute="bottom" id="K00-Dv-phJ"/>
-                            <constraint firstItem="n49-r8-IhJ" firstAttribute="leading" secondItem="zzk-Ge-1Kj" secondAttribute="leadingMargin" constant="-16" id="NIE-Zv-rXU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="n49-r8-IhJ" secondAttribute="trailing" constant="-16" id="OGg-T3-g7e"/>
+                            <constraint firstItem="n49-r8-IhJ" firstAttribute="leading" secondItem="zzk-Ge-1Kj" secondAttribute="leading" id="NIE-Zv-rXU"/>
+                            <constraint firstAttribute="trailing" secondItem="n49-r8-IhJ" secondAttribute="trailing" id="OGg-T3-g7e"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="FFX Monsters Checklist" id="kK6-gf-PCG"/>
@@ -154,9 +155,14 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mKw-L9-mk3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xmu-Ec-Wqb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="xmu-Ec-Wqb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.5607843137254902" green="0.31372549019607843" blue="0.58039215686274515" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
