@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import iAd
 
 class AreasViewController: UIViewController {
 
@@ -16,7 +17,8 @@ class AreasViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Bordered, target: nil, action: nil)
+    navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+    loadAdBannerView()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -26,10 +28,13 @@ class AreasViewController: UIViewController {
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    let monstersViewController = segue.destinationViewController as MonstersViewController
+    let monstersViewController = segue.destinationViewController as! MonstersViewController
     monstersViewController.area = areasController.areas[tableView.indexPathForSelectedRow()!.row]
   }
 
+  //MARK: iAd
+  private var adBannerView: ADBannerView!
+  private var adBannerViewBottomSpaceLayoutConstraint: NSLayoutConstraint!
 }
 
 extension AreasViewController: UITableViewDataSource, UITableViewDelegate {
@@ -38,11 +43,11 @@ extension AreasViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("AreaCell") as UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("AreaCell") as! UITableViewCell
     
     let area = areasController.areas[indexPath.row]
-    cell.textLabel!.text! = area.name
-    cell.detailTextLabel!.text! = "\(area.numberOfCapturedMonsters()) / \(area.monsters.count)"
+    cell.textLabel!.text = area.name
+    cell.detailTextLabel!.text = "\(area.numberOfCapturedMonsters()) / \(area.monsters.count)"
     
     switch area.numberOfCapturedMonsters() {
     case 0:
@@ -54,6 +59,62 @@ extension AreasViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     return cell
+  }
+}
+
+extension AreasViewController: ADBannerViewDelegate {
+  private func loadAdBannerView() {
+    adBannerView = ADBannerView(adType: .Banner)
+    adBannerView.delegate = self
+    adBannerView.setTranslatesAutoresizingMaskIntoConstraints(false)
+    navigationController!.view.addSubview(adBannerView)
+    
+    let centerConstraint = NSLayoutConstraint(item: adBannerView, attribute: .CenterX, relatedBy: .Equal, toItem: navigationController!.view, attribute: .CenterX, multiplier: 1, constant: 0)
+    navigationController!.view.addConstraint(centerConstraint)
+    
+    adBannerViewBottomSpaceLayoutConstraint = NSLayoutConstraint(item: adBannerView, attribute: .Bottom, relatedBy: .Equal, toItem: navigationController!.bottomLayoutGuide, attribute: .Bottom, multiplier: 1, constant: 50)
+    navigationController!.view.addConstraint(adBannerViewBottomSpaceLayoutConstraint)
+    
+    navigationController!.view.setNeedsUpdateConstraints()
+  }
+  
+  private func showAdBannerView() {
+    adBannerViewBottomSpaceLayoutConstraint.constant = 0
+    
+    view.setNeedsUpdateConstraints()
+    UIView.animateWithDuration(1.5) {
+      self.view.updateConstraintsIfNeeded()
+    }
+    
+    // Adjust tableView to scroll offset of the Ad
+    var contentInset = tableView.contentInset
+    contentInset.bottom = CGRectGetHeight(adBannerView.frame)
+    tableView.contentInset = contentInset
+    tableView.scrollIndicatorInsets = contentInset
+  }
+  
+  private func hideAdBannerView() {
+    adBannerViewBottomSpaceLayoutConstraint.constant = -CGRectGetHeight(adBannerView.frame)
+    
+    view.setNeedsUpdateConstraints()
+    UIView.animateWithDuration(1.5) {
+      self.view.updateConstraintsIfNeeded()
+    }
+    
+    // Adjust tableView not to scroll offset of the Ad anymore
+    var contentInset = tableView.contentInset
+    contentInset.bottom = 0
+    tableView.contentInset = contentInset
+    tableView.scrollIndicatorInsets = contentInset
+  }
+  
+  //MARK: AdBannerViewDelegate
+  func bannerViewDidLoadAd(banner: ADBannerView!) {
+    showAdBannerView()
+  }
+  
+  func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+    hideAdBannerView()
   }
 }
 

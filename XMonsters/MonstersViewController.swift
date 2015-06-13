@@ -18,6 +18,16 @@ class MonstersViewController: UIViewController {
     }
   }
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    // Adjust tableView to scroll offset of the Ad
+    var contentInset = tableView.contentInset
+    contentInset.bottom = 50
+    tableView.contentInset = contentInset
+    tableView.scrollIndicatorInsets = contentInset
+  }
+  
 }
 
 extension MonstersViewController: UITableViewDataSource, UITableViewDelegate {
@@ -26,11 +36,11 @@ extension MonstersViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("MonsterCell") as MonsterCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("MonsterCell") as! MonsterCell
     cell.delegate = self
     
     let monster = area.monsters[indexPath.row]
-    cell.nameLabel.text! = monster.name
+    cell.nameLabel.text = LocalizedString(monster.name)
     cell.captured = monster.captured
     
     return cell

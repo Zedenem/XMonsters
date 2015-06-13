@@ -40,6 +40,8 @@
 		871574131ACBB947004FFCFA /* XMonstersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMonstersTests.swift; sourceTree = "<group>"; };
 		8715741D1ACBBAEB004FFCFA /* MonstersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonstersViewController.swift; sourceTree = "<group>"; };
 		8715741F1ACBBB01004FFCFA /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		873330341B2CB4CB00FAB290 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		873330351B2CB4CB00FAB290 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +169,6 @@
 				TargetAttributes = {
 					871573F71ACBB946004FFCFA = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 7M64MPPM2T;
 					};
 					8715740C1ACBB947004FFCFA = {
 						CreatedOnToolsVersion = 6.2;
@@ -249,6 +250,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				871574021ACBB946004FFCFA /* Base */,
+				873330341B2CB4CB00FAB290 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -257,6 +259,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				871574071ACBB946004FFCFA /* Base */,
+				873330351B2CB4CB00FAB290 /* fr */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
