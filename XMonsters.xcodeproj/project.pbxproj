@@ -15,6 +15,7 @@
 		871574141ACBB947004FFCFA /* XMonstersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871574131ACBB947004FFCFA /* XMonstersTests.swift */; };
 		8715741E1ACBBAEB004FFCFA /* MonstersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8715741D1ACBBAEB004FFCFA /* MonstersViewController.swift */; };
 		871574201ACBBB01004FFCFA /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8715741F1ACBBB01004FFCFA /* DataModel.swift */; };
+		873330381B2CB66800FAB290 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 873330361B2CB66800FAB290 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,8 @@
 		8715741F1ACBBB01004FFCFA /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		873330341B2CB4CB00FAB290 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		873330351B2CB4CB00FAB290 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		873330371B2CB66800FAB290 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		873330391B2CB67200FAB290 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,7 @@
 		871573FB1ACBB946004FFCFA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				873330361B2CB66800FAB290 /* Localizable.strings */,
 				871573FC1ACBB946004FFCFA /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -201,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				871574031ACBB946004FFCFA /* Main.storyboard in Resources */,
+				873330381B2CB66800FAB290 /* Localizable.strings in Resources */,
 				871574081ACBB946004FFCFA /* LaunchScreen.xib in Resources */,
 				871574051ACBB946004FFCFA /* Images.xcassets in Resources */,
 			);
@@ -262,6 +267,15 @@
 				873330351B2CB4CB00FAB290 /* fr */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		873330361B2CB66800FAB290 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				873330371B2CB66800FAB290 /* Base */,
+				873330391B2CB67200FAB290 /* fr */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

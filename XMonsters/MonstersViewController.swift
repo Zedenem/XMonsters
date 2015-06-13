@@ -40,7 +40,7 @@ extension MonstersViewController: UITableViewDataSource, UITableViewDelegate {
     cell.delegate = self
     
     let monster = area.monsters[indexPath.row]
-    cell.nameLabel.text = LocalizedString(monster.name)
+    cell.nameLabel.text = monster.name
     cell.captured = monster.captured
     
     return cell

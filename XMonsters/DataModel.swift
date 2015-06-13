@@ -18,8 +18,8 @@ class Area {
   
   convenience init (name: String, monstersNames: [String]) {
     self.init(name: name)
-    for mName in monstersNames {
-      monsters.append(Monster(name: LocalizedString(mName)))
+    for monsterName in monstersNames {
+      monsters.append(Monster(name: monsterName))
     }
   }
   
@@ -56,51 +56,47 @@ class Monster {
   }
 }
 
-func LocalizedString(key: String) -> String {
-  return NSLocalizedString(key, comment: key)
-}
-
 class AreasController {
   lazy var areas: [Area] = {
     var areas = [Area]()
     
-    var a = Area(name: LocalizedString("Besaid"), monstersNames: ["Condor", "Dingo", "Flambos"])
+    var a = Area(name: NSLocalizedString("Besaid", comment: ""), monstersNames: ["Condor", "Dingo", "Flambos"])
     areas.append(a)
     
-    a = Area(name: LocalizedString("Kilika"), monstersNames: ["Abeille Tueuse", "Balsamine", "Dinonyx", "Élémentaire Jaune"])
+    a = Area(name: NSLocalizedString("Kilika", comment: ""), monstersNames: ["Abeille Tueuse", "Balsamine", "Dinonyx", "Élémentaire Jaune"])
     areas.append(a)
     
-    a = Area(name: LocalizedString("Route de Mi'ihen"), monstersNames: ["Bicorne", "Bombo", "Chien de Mi'ihen", "Cujo", "Élémentaire Blanc", "Ipiria", "Oeil Flottant", "Vouivre"])
+    a = Area(name: NSLocalizedString("Mi'ihen Highroad", comment: ""), monstersNames: ["Bicorne", "Bombo", "Chien de Mi'ihen", "Cujo", "Élémentaire Blanc", "Ipiria", "Oeil Flottant", "Vouivre"])
     areas.append(a)
     
-    a = Area(name: LocalizedString("Route des Mycorocs"), monstersNames: ["Élémentaire Rouge", "Flambos de Foudre", "Fungus", "Gandharva", "Garuda", "Lamashtu", "Raptour"])
+    a = Area(name: NSLocalizedString("Mushroom Rock Road", comment: ""), monstersNames: ["Élémentaire Rouge", "Flambos de Foudre", "Fungus", "Gandharva", "Garuda", "Lamashtu", "Raptour"])
     areas.append(a)
     
-    a = Area(name: LocalizedString("Route de Djose"), monstersNames: ["Basilisk", "Bunyips", "Emildea", "Flambos de Neige", "Garoum", "Ochu", "Simurgh"])
+    a = Area(name: NSLocalizedString("Djose Road", comment: ""), monstersNames: ["Basilisk", "Bunyips", "Emildea", "Flambos de Neige", "Garoum", "Ochu", "Simurgh"])
     areas.append(a)
     
-    a = Area(name: LocalizedString("Plaine Foudroyée"), monstersNames: ["Aroj", "Buer", "Ekarissor", "Élémentaire Or", "Kusarique", "Larva", "Mélusine", "Pampa"])
+    a = Area(name: NSLocalizedString("Thunder Plains", comment: ""), monstersNames: ["Aroj", "Buer", "Ekarissor", "Élémentaire Or", "Kusarique", "Larva", "Mélusine", "Pampa"])
     areas.append(a)
     
-    a = Area(name: LocalizedString("Macalania"), monstersNames: ["Loup des Neiges", "Iguanore", "Guêpe", "Oeil Démoniaque", "Flambos de Glace", "Élémentaire Bleu", "Mulfus", "Mafut", "Koospos", "Chimaira"])
+    a = Area(name: NSLocalizedString("Macalania", comment: ""), monstersNames: ["Loup des Neiges", "Iguanore", "Guêpe", "Oeil Démoniaque", "Flambos de Glace", "Élémentaire Bleu", "Mulfus", "Mafut", "Koospos", "Chimaira"])
     areas.append(a)
     
-    a = Area(name: LocalizedString("Ile de Bikanel"), monstersNames: ["Loup des Sables", "Alcyon", "Mushussu", "Zu", "Ver des Sables", "Pampa"])
+    a = Area(name: NSLocalizedString("Bikanel", comment: ""), monstersNames: ["Loup des Sables", "Alcyon", "Mushussu", "Zu", "Ver des Sables", "Pampa"])
     areas.append(a)
     
-    a = Area(name: LocalizedString("Plaine Félicité"), monstersNames: ["Lycaon", "Nebiros", "Flambos de Feu", "Shred", "Vipère-méduse", "Ogre", "Couguar", "Kimaira", "Xylomid"])
+    a = Area(name: NSLocalizedString("Calm Lands", comment: ""), monstersNames: ["Lycaon", "Nebiros", "Flambos de Feu", "Shred", "Vipère-méduse", "Ogre", "Couguar", "Kimaira", "Xylomid"])
     areas.append(a)
     
-    a = Area(name: LocalizedString("Grotte de la vallée"), monstersNames: ["Yowie", "Galkimasera", "Élémentaire Obscur", "Nidhog", "Thorn", "Varaha", "Epehj", "Fantôme", "Tomberry"])
+    a = Area(name: NSLocalizedString("Stolen Fayth Cavern", comment: ""), monstersNames: ["Yowie", "Galkimasera", "Élémentaire Obscur", "Nidhog", "Thorn", "Varaha", "Epehj", "Fantôme", "Tomberry"])
     areas.append(a)
     
-    a = Area(name: LocalizedString("Mont Gagazet"), monstersNames: ["Bandersnatch", "Ahriman", "Flambos Noir", "Grenada", "Orchida", "Grendel", "Asherah", "Mandragore", "Behemoth", "Serrasalmus", "Achelus", "Barracudo Cornu"])
+    a = Area(name: NSLocalizedString("Mt. Gagazet", comment: ""), monstersNames: ["Bandersnatch", "Ahriman", "Flambos Noir", "Grenada", "Orchida", "Grendel", "Asherah", "Mandragore", "Behemoth", "Serrasalmus", "Achelus", "Barracudo Cornu"])
     areas.append(a)
     
-    a = Area(name: LocalizedString("Sin"), monstersNames: ["Exoray", "Spectre", "Gemini A", "Gemini B", "Démonolithe", "Morbol", "Barbatos", "Adamankhelone", "Méga Behemoth"])
+    a = Area(name: NSLocalizedString("Inside Sin", comment: ""), monstersNames: ["Exoray", "Spectre", "Gemini A", "Gemini B", "Démonolithe", "Morbol", "Barbatos", "Adamankhelone", "Méga Behemoth"])
     areas.append(a)
     
-    a = Area(name: LocalizedString("Ruines d'Oméga"), monstersNames: ["Zaurus", "Oeil de la Mort", "Élémentaire Noir", "Haarma", "Pyrobolse", "Esprit", "Métillé", "Maître Couguar", "Tomberry Nion", "Varuna"])
+    a = Area(name: NSLocalizedString("Omega Dungeon", comment: ""), monstersNames: ["Zaurus", "Oeil de la Mort", "Élémentaire Noir", "Haarma", "Pyrobolse", "Esprit", "Métillé", "Maître Couguar", "Tomberry Nion", "Varuna"])
     areas.append(a)
     
     return areas
