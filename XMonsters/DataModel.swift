@@ -92,7 +92,7 @@ class AreasController {
     
     monsters = [Monster(name: NSLocalizedString("Basilisk", comment: ""), key: "Basilisk"),
                 Monster(name: NSLocalizedString("Bunyips", comment: ""), key: "Bunyips"),
-                Monster(name: NSLocalizedString("Emildea", comment: ""), key: "Emildea"),
+                Monster(name: NSLocalizedString("Elmidea", comment: ""), key: "Emildea"),
                 Monster(name: NSLocalizedString("Flambos de Neige", comment: ""), key: "Flambos de Neige"),
                 Monster(name: NSLocalizedString("Garoum", comment: ""), key: "Garoum"),
                 Monster(name: NSLocalizedString("Ochu", comment: ""), key: "Ochu"),
@@ -107,12 +107,12 @@ class AreasController {
                 Monster(name: NSLocalizedString("Kusarique", comment: ""), key: "Kusarique"),
                 Monster(name: NSLocalizedString("Larva", comment: ""), key: "Larva"),
                 Monster(name: NSLocalizedString("Mélusine", comment: ""), key: "Mélusine"),
-                Monster(name: NSLocalizedString("Pampa", comment: ""), key: "Pampa")]
+                Monster(name: NSLocalizedString("Pampa ?", comment: ""), key: "Pampa ?")]
     a = Area(name: NSLocalizedString("Thunder Plains", comment: ""), monsters: monsters)
     areas.append(a)
     
     monsters = [Monster(name: NSLocalizedString("Loup des Neiges", comment: ""), key: "Loup des Neiges"),
-                Monster(name: NSLocalizedString("Iguanore", comment: ""), key: "Iguanore"),
+                Monster(name: NSLocalizedString("Iguanor", comment: ""), key: "Iguanore"),
                 Monster(name: NSLocalizedString("Guêpe", comment: ""), key: "Guêpe"),
                 Monster(name: NSLocalizedString("Oeil Démoniaque", comment: ""), key: "Oeil Démoniaque"),
                 Monster(name: NSLocalizedString("Flambos de Glace", comment: ""), key: "Flambos de Glace"),
@@ -174,8 +174,8 @@ class AreasController {
     
     monsters = [Monster(name: NSLocalizedString("Exoray", comment: ""), key: "Exoray"),
                 Monster(name: NSLocalizedString("Spectre", comment: ""), key: "Spectre"),
-                Monster(name: NSLocalizedString("Gemini A", comment: ""), key: "Gemini A"),
-                Monster(name: NSLocalizedString("Gemini B", comment: ""), key: "Gemini B"),
+                Monster(name: NSLocalizedString("Gemini (Épée)", comment: ""), key: "Gemini A"),
+                Monster(name: NSLocalizedString("Gemini (Masse)", comment: ""), key: "Gemini B"),
                 Monster(name: NSLocalizedString("Démonolithe", comment: ""), key: "Démonolithe"),
                 Monster(name: NSLocalizedString("Morbol", comment: ""), key: "Morbol"),
                 Monster(name: NSLocalizedString("Barbatos", comment: ""), key: "Barbatos"),

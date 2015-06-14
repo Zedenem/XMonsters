@@ -60,7 +60,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="FFX Monsters Checklist" id="ffO-F7-yqE">
-                        <barButtonItem key="leftBarButtonItem" title="About" id="Ie8-69-FpI">
+                        <barButtonItem key="rightBarButtonItem" title="About" id="Ie8-69-FpI">
                             <connections>
                                 <segue destination="GVt-1Y-WK1" kind="presentation" id="QhX-ic-qws"/>
                             </connections>
@@ -342,7 +342,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="About" id="REJ-aP-KgB">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="i3e-HO-Ebo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="i3e-HO-Ebo">
                             <connections>
                                 <action selector="dismiss:" destination="ccn-SK-4zl" id="2eL-MZ-NiH"/>
                             </connections>
