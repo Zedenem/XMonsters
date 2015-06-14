@@ -28,8 +28,10 @@ class AreasViewController: UIViewController {
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    let monstersViewController = segue.destinationViewController as! MonstersViewController
-    monstersViewController.area = areasController.areas[tableView.indexPathForSelectedRow()!.row]
+    if segue.identifier == "PushMonstersSegue" {
+      let monstersViewController = segue.destinationViewController as! MonstersViewController
+      monstersViewController.area = areasController.areas[tableView.indexPathForSelectedRow()!.row]
+    }
   }
 
   //MARK: iAd
@@ -94,7 +96,7 @@ extension AreasViewController: ADBannerViewDelegate {
   }
   
   private func hideAdBannerView() {
-    adBannerViewBottomSpaceLayoutConstraint.constant = -CGRectGetHeight(adBannerView.frame)
+    adBannerViewBottomSpaceLayoutConstraint.constant = CGRectGetHeight(adBannerView.frame)
     
     view.setNeedsUpdateConstraints()
     UIView.animateWithDuration(1.5) {

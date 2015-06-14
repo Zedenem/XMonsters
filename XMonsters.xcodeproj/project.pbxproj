@@ -16,6 +16,7 @@
 		8715741E1ACBBAEB004FFCFA /* MonstersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8715741D1ACBBAEB004FFCFA /* MonstersViewController.swift */; };
 		871574201ACBBB01004FFCFA /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8715741F1ACBBB01004FFCFA /* DataModel.swift */; };
 		873330381B2CB66800FAB290 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 873330361B2CB66800FAB290 /* Localizable.strings */; };
+		873330401B2D26AB00FAB290 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733303F1B2D26AB00FAB290 /* AboutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,10 +42,11 @@
 		871574131ACBB947004FFCFA /* XMonstersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMonstersTests.swift; sourceTree = "<group>"; };
 		8715741D1ACBBAEB004FFCFA /* MonstersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonstersViewController.swift; sourceTree = "<group>"; };
 		8715741F1ACBBB01004FFCFA /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		873330341B2CB4CB00FAB290 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		873330351B2CB4CB00FAB290 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		873330371B2CB66800FAB290 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		873330391B2CB67200FAB290 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8733303F1B2D26AB00FAB290 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		873330441B2D38BE00FAB290 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				871573FD1ACBB946004FFCFA /* AppDelegate.swift */,
+				8733303F1B2D26AB00FAB290 /* AboutViewController.swift */,
 				871573FF1ACBB946004FFCFA /* AreasViewController.swift */,
 				8715741D1ACBBAEB004FFCFA /* MonstersViewController.swift */,
 				8715741F1ACBBB01004FFCFA /* DataModel.swift */,
@@ -228,6 +231,7 @@
 				871574001ACBB946004FFCFA /* AreasViewController.swift in Sources */,
 				871574201ACBBB01004FFCFA /* DataModel.swift in Sources */,
 				8715741E1ACBBAEB004FFCFA /* MonstersViewController.swift in Sources */,
+				873330401B2D26AB00FAB290 /* AboutViewController.swift in Sources */,
 				871573FE1ACBB946004FFCFA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,7 +259,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				871574021ACBB946004FFCFA /* Base */,
-				873330341B2CB4CB00FAB290 /* fr */,
+				873330441B2D38BE00FAB290 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

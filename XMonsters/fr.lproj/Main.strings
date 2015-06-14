@@ -2,14 +2,75 @@
 /* Class = "UILabel"; text = "Detail"; ObjectID = "2nr-Bh-ehO"; */
 "2nr-Bh-ehO.text" = "Detail";
 
+/* Class = "UILabel"; text = "Check this App's code"; ObjectID = "3KU-GO-ebv"; */
+"3KU-GO-ebv.text" = "Ouvrir le code de cette App";
+
+/* Class = "UITableViewSection"; headerTitle = "About Zedenem"; ObjectID = "6br-Ea-CJM"; */
+"6br-Ea-CJM.headerTitle" = "À propos de Zedenem";
+
 /* Class = "UILabel"; text = "0/10"; ObjectID = "BdN-K0-sfj"; */
 "BdN-K0-sfj.text" = "0/10";
 
+/* Class = "UILabel"; text = "Rate the app on the App Store"; ObjectID = "Eaq-Xs-LYV"; */
+"Eaq-Xs-LYV.text" = "Notez l'app sur l'App Store";
+
+/* Class = "UILabel"; text = "Follow me on Twitter"; ObjectID = "G4Y-FX-KBF"; */
+"G4Y-FX-KBF.text" = "Suivez-moi sur Twitter";
+
+/* Class = "UITableViewSection"; footerTitle = "Contact me if I used your data in a wrong way! Thank you!"; ObjectID = "GoF-wz-etF"; */
+"GoF-wz-etF.footerTitle" = "Contactez-moi si j'ai utilisé vos données d'une mauvaise manière ! Merci !";
+
+/* Class = "UITableViewSection"; headerTitle = "Databases Used"; ObjectID = "GoF-wz-etF"; */
+"GoF-wz-etF.headerTitle" = "Bases de données utilisées";
+
+/* Class = "UILabel"; text = "@Zedenem"; ObjectID = "IHZ-mR-ihc"; */
+"IHZ-mR-ihc.text" = "@Zedenem";
+
+/* Class = "UIBarButtonItem"; title = "About"; ObjectID = "Ie8-69-FpI"; */
+"Ie8-69-FpI.title" = "À Propos";
+
+/* Class = "UILabel"; text = "Github"; ObjectID = "Ksg-Ga-qkp"; */
+"Ksg-Ga-qkp.text" = "Github";
+
+/* Class = "UILabel"; text = "This app was developed by a Final Fantasy X fan, for Final Fantasy X fans.
+ 
+ Ads are just here to help me add features and fix bugs. Feel free to click on them if you want to help me!
+ 
+ This app is Open Source on github (link below)! Feel free to raise bugs, build new features or just copy it!
+ 
+ If you like the app, use the links below to rate it on the App Store and follow me on Twitter.
+ 
+ Have fun!"; ObjectID = "Nty-XG-6uL"; */
+"Nty-XG-6uL.text" = "Cette app a été développée par un fan de Final Fantasy X, pour des fans de Final Fantasy X.
+
+Les bannières publicitaires sont là pour m'aider à ajouter des fonctionnalités et corriger des bugs. N'hésitez pas à les cliquer si vous voulez m'aider !
+
+Cette app est Open Source sur Github (lien ci-dessous) ! N'hésitez pas à signaler des bugs, ajouter de nouvelles fonctionnalités ou simplement copier le code !
+
+Si vous aimez cette app, utilisez les liens ci-dessous pour laisser une note sur l'App Store et me suivre sur Twitter.
+
+Amusez-vous bien!";
+
+/* Class = "UILabel"; text = "FF Wiki"; ObjectID = "OAw-2b-ums"; */
+"OAw-2b-ums.text" = "FF Wiki";
+
+/* Class = "UINavigationItem"; title = "About"; ObjectID = "REJ-aP-KgB"; */
+"REJ-aP-KgB.title" = "À Propos";
+
+/* Class = "UILabel"; text = "http://www.ffworld.com/?rub=ff10&page=q_arene"; ObjectID = "eOE-ul-P0S"; */
+"eOE-ul-P0S.text" = "http://www.ffworld.com/?rub=ff10&page=q_arene";
+
 /* Class = "UINavigationItem"; title = "FFX Monsters Checklist"; ObjectID = "ffO-F7-yqE"; */
-"ffO-F7-yqE.title" = "FFX Monsters Checklist";
+"ffO-F7-yqE.title" = "Liste des Monstres FFX";
+
+/* Class = "UILabel"; text = "FF World"; ObjectID = "gJb-BE-G9V"; */
+"gJb-BE-G9V.text" = "FF World";
 
 /* Class = "UINavigationItem"; title = "FFX Monsters Checklist"; ObjectID = "kK6-gf-PCG"; */
-"kK6-gf-PCG.title" = "FFX Monsters Checklist";
+"kK6-gf-PCG.title" = "Liste des Monstres FFX";
+
+/* Class = "UILabel"; text = "http://finalfantasy.wikia.com/wiki/Monster_Arena"; ObjectID = "oAS-GP-Xws"; */
+"oAS-GP-Xws.text" = "http://finalfantasy.wikia.com/wiki/Monster_Arena";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "q1v-8u-vVj"; */
 "q1v-8u-vVj.text" = "Title";
