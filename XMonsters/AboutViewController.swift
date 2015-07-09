@@ -12,8 +12,14 @@ import StoreKit
 class AboutViewController: UITableViewController {
   
   @IBOutlet weak var aboutLabel: UILabel!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    Flurry.logEvent("about", timed: true)
+  }
 
   @IBAction func dismiss(sender: UIBarButtonItem) {
+    Flurry.endTimedEvent("about", withParameters: nil)
     self.dismissViewControllerAnimated(true, completion: nil)
   }
   
@@ -30,14 +36,19 @@ class AboutViewController: UITableViewController {
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     switch (indexPath.section, indexPath.row) {
     case (0, 1):
+      Flurry.logEvent("select_app_store")
       presentAppStore()
     case (0, 2):
+      Flurry.logEvent("select_twitter")
       presentTwitter()
     case (0, 3):
+      Flurry.logEvent("present_github")
       presentGithub()
     case (1, 0):
+      Flurry.logEvent("present_ffworld")
       presentFFWorld()
     case (1, 1):
+      Flurry.logEvent("present_ffwiki")
       presentFFWiki()
     default:break
     }
@@ -47,7 +58,12 @@ class AboutViewController: UITableViewController {
     let storeController = SKStoreProductViewController()
     storeController.delegate = self
     storeController.loadProductWithParameters([SKStoreProductParameterITunesItemIdentifier: "981939574"]) { (result: Bool, error: NSError!) -> Void in
-      self.presentViewController(storeController, animated: true, completion: nil)
+      if result {
+        Flurry.logEvent("present_app_store", timed: true)
+        self.presentViewController(storeController, animated: true, completion: nil)
+      } else {
+        Flurry.logError("app_store_error", message: error.localizedDescription, error: error)
+      }
     }
   }
   
@@ -55,10 +71,12 @@ class AboutViewController: UITableViewController {
     let app = UIApplication.sharedApplication()
     if let twitterAppURL = NSURL(string: "twitter://user?screen_name=zedenem") {
       if app.canOpenURL(twitterAppURL) {
+        Flurry.logEvent("present_twitter_app")
         app.openURL(twitterAppURL)
         return
       }
     }
+    Flurry.logEvent("present_twitter_web")
     app.openURL(NSURL(string: "https://twitter.com/zedenem")!)
   }
   
@@ -77,6 +95,7 @@ class AboutViewController: UITableViewController {
 
 extension AboutViewController: SKStoreProductViewControllerDelegate {
   func productViewControllerDidFinish(viewController: SKStoreProductViewController!) {
+    Flurry.endTimedEvent("present_app_store", withParameters: nil)
     self.dismissViewControllerAnimated(true, completion: nil)
   }
 }

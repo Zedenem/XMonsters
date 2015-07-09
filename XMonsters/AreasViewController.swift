@@ -17,6 +17,7 @@ class AreasViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    Flurry.logEvent("areas")
     navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     loadAdBannerView()
   }
@@ -66,6 +67,7 @@ extension AreasViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension AreasViewController: ADBannerViewDelegate {
   private func loadAdBannerView() {
+    Flurry.logEvent("ad_load", timed: true)
     adBannerView = ADBannerView(adType: .Banner)
     adBannerView.delegate = self
     adBannerView.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -112,10 +114,13 @@ extension AreasViewController: ADBannerViewDelegate {
   
   //MARK: AdBannerViewDelegate
   func bannerViewDidLoadAd(banner: ADBannerView!) {
+    Flurry.endTimedEvent("ad_load", withParameters: ["success": 1])
     showAdBannerView()
   }
   
   func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+    Flurry.endTimedEvent("ad_load", withParameters: ["success": 0])
+    Flurry.logError("ad_load_fail", message: error.localizedDescription, error: error)
     hideAdBannerView()
   }
 }

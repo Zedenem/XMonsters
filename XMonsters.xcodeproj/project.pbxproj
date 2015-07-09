@@ -17,6 +17,9 @@
 		871574201ACBBB01004FFCFA /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8715741F1ACBBB01004FFCFA /* DataModel.swift */; };
 		873330381B2CB66800FAB290 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 873330361B2CB66800FAB290 /* Localizable.strings */; };
 		873330401B2D26AB00FAB290 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733303F1B2D26AB00FAB290 /* AboutViewController.swift */; };
+		876CA76B1B4E1B8D006B3989 /* libFlurry_6.6.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 876CA76A1B4E1B8D006B3989 /* libFlurry_6.6.0.a */; };
+		876CA76E1B4E2514006B3989 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 876CA76D1B4E2514006B3989 /* Security.framework */; };
+		876CA7711B4E2556006B3989 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 876CA7701B4E2556006B3989 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,12 @@
 		873330391B2CB67200FAB290 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8733303F1B2D26AB00FAB290 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		873330441B2D38BE00FAB290 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		876CA7681B4E1B8D006B3989 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		876CA7691B4E1B8D006B3989 /* FlurryWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryWatch.h; sourceTree = "<group>"; };
+		876CA76A1B4E1B8D006B3989 /* libFlurry_6.6.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.6.0.a; sourceTree = "<group>"; };
+		876CA76C1B4E1BD7006B3989 /* XMonsters-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMonsters-Bridging-Header.h"; sourceTree = "<group>"; };
+		876CA76D1B4E2514006B3989 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		876CA7701B4E2556006B3989 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +63,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				876CA7711B4E2556006B3989 /* SystemConfiguration.framework in Frameworks */,
+				876CA76E1B4E2514006B3989 /* Security.framework in Frameworks */,
+				876CA76B1B4E1B8D006B3989 /* libFlurry_6.6.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +84,7 @@
 			children = (
 				871573FA1ACBB946004FFCFA /* XMonsters */,
 				871574101ACBB947004FFCFA /* XMonstersTests */,
+				876CA76F1B4E252D006B3989 /* Frameworks */,
 				871573F91ACBB946004FFCFA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +101,7 @@
 		871573FA1ACBB946004FFCFA /* XMonsters */ = {
 			isa = PBXGroup;
 			children = (
+				876CA7661B4E1B8D006B3989 /* Vendor */,
 				871573FD1ACBB946004FFCFA /* AppDelegate.swift */,
 				8733303F1B2D26AB00FAB290 /* AboutViewController.swift */,
 				871573FF1ACBB946004FFCFA /* AreasViewController.swift */,
@@ -106,6 +120,7 @@
 			children = (
 				873330361B2CB66800FAB290 /* Localizable.strings */,
 				871573FC1ACBB946004FFCFA /* Info.plist */,
+				876CA76C1B4E1BD7006B3989 /* XMonsters-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -125,6 +140,33 @@
 				871574121ACBB947004FFCFA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		876CA7661B4E1B8D006B3989 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				876CA7671B4E1B8D006B3989 /* Flurry */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		876CA7671B4E1B8D006B3989 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				876CA7681B4E1B8D006B3989 /* Flurry.h */,
+				876CA7691B4E1B8D006B3989 /* FlurryWatch.h */,
+				876CA76A1B4E1B8D006B3989 /* libFlurry_6.6.0.a */,
+			);
+			path = Flurry;
+			sourceTree = "<group>";
+		};
+		876CA76F1B4E252D006B3989 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				876CA7701B4E2556006B3989 /* SystemConfiguration.framework */,
+				876CA76D1B4E2514006B3989 /* Security.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,7 +414,12 @@
 				INFOPLIST_FILE = XMonsters/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XMonsters/Vendor/Flurry",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XMonsters/XMonsters-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -384,7 +431,12 @@
 				INFOPLIST_FILE = XMonsters/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XMonsters/Vendor/Flurry",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XMonsters/XMonsters-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -467,7 +519,12 @@
 				INFOPLIST_FILE = XMonsters/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/XMonsters/Vendor/Flurry",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XMonsters/XMonsters-Bridging-Header.h";
 			};
 			name = "App Store";
 		};

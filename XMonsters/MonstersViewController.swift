@@ -20,12 +20,17 @@ class MonstersViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    Flurry.logEvent("area", withParameters: ["area_name": area.name], timed: true)
     
     // Adjust tableView to scroll offset of the Ad
     var contentInset = tableView.contentInset
     contentInset.bottom = 50
     tableView.contentInset = contentInset
     tableView.scrollIndicatorInsets = contentInset
+  }
+  
+  deinit {
+    Flurry.endTimedEvent("area", withParameters: nil)
   }
   
 }
@@ -51,6 +56,7 @@ extension MonstersViewController: MonsterCellDelegate {
   func monsterCell(monsterCell: MonsterCell, capturedValueChanged captured: Int) {
     let cellIndex = tableView.indexPathForCell(monsterCell) as NSIndexPath!
     let monster = area.monsters[cellIndex.row]
+    Flurry.logEvent("monster_log", withParameters: ["monster_key": monster.key, "captured": captured, "previous_captured": monster.captured])
     monster.captured = captured
   }
 }
