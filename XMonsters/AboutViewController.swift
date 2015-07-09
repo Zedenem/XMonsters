@@ -80,5 +80,3 @@ extension AboutViewController: SKStoreProductViewControllerDelegate {
     self.dismissViewControllerAnimated(true, completion: nil)
   }
 }
-
-//
