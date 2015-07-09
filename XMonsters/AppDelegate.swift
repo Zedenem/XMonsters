@@ -15,8 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     Flurry.startSession("HX5DWPWZXF36Y86KRNQ2")
-    Flurry.setDebugLogEnabled(true)
-    Flurry.setLogLevel(FlurryLogLevelDebug)
     return true
   }
 }

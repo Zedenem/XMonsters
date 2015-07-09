@@ -20,7 +20,6 @@ class MonstersViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    Flurry.logEvent("area", withParameters: ["area_name": area.name], timed: true)
     
     // Adjust tableView to scroll offset of the Ad
     var contentInset = tableView.contentInset
@@ -29,10 +28,15 @@ class MonstersViewController: UIViewController {
     tableView.scrollIndicatorInsets = contentInset
   }
   
-  deinit {
-    Flurry.endTimedEvent("area", withParameters: nil)
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    Flurry.logEvent("area", withParameters: ["area_name": area.name], timed: true)
   }
   
+  override func viewDidDisappear(animated: Bool) {
+    super.viewDidDisappear(animated)
+    Flurry.endTimedEvent("area", withParameters: nil)
+  }
 }
 
 extension MonstersViewController: UITableViewDataSource, UITableViewDelegate {

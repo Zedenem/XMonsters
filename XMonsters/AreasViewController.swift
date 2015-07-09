@@ -123,5 +123,14 @@ extension AreasViewController: ADBannerViewDelegate {
     Flurry.logError("ad_load_fail", message: error.localizedDescription, error: error)
     hideAdBannerView()
   }
+  
+  func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+    Flurry.logEvent("present_ad", timed: true)
+    return true
+  }
+  
+  func bannerViewActionDidFinish(banner: ADBannerView!) {
+    Flurry.endTimedEvent("present_ad", withParameters: nil)
+  }
 }
 
