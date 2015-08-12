@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     Flurry.startSession(FlurryAPIKey)
     Flurry.setDebugLogEnabled(true)
     Flurry.setLogLevel(FlurryLogLevelDebug)
+    
+    Crashlytics.startWithAPIKey("955b68eaf66e0210af84f1c1148355ff2fa60905")
+    
     return true
   }
 }
