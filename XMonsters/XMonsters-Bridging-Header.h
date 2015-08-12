@@ -3,3 +3,4 @@
 //
 
 #import "Flurry.h"
+#import <Crashlytics/Crashlytics.h>
