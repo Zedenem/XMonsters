@@ -60,6 +60,9 @@
 		876CA76D1B4E2514006B3989 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		876CA7701B4E2556006B3989 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		87A209D11B7AE6C5001B5651 /* APIKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		87A209D41B7AEA96001B5651 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		87A209D51B7AEA96001B5651 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
+		87A209D61B7AEA96001B5651 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		DC20B799B279FC8D6DEEE326 /* Pods.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods.app store.xcconfig"; path = "Pods/Target Support Files/Pods/Pods.app store.xcconfig"; sourceTree = "<group>"; };
 		EDAB288CCD54A7913FF2C233 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FB8DA85C2947B27E53176FB9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -256,6 +259,7 @@
 			knownRegions = (
 				en,
 				Base,
+				it,
 			);
 			mainGroup = 871573EF1ACBB946004FFCFA;
 			productRefGroup = 871573F91ACBB946004FFCFA /* Products */;
@@ -373,6 +377,7 @@
 			children = (
 				871574021ACBB946004FFCFA /* Base */,
 				873330441B2D38BE00FAB290 /* fr */,
+				87A209D51B7AEA96001B5651 /* it */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 			children = (
 				871574071ACBB946004FFCFA /* Base */,
 				873330351B2CB4CB00FAB290 /* fr */,
+				87A209D61B7AEA96001B5651 /* it */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -391,6 +397,7 @@
 			children = (
 				873330371B2CB66800FAB290 /* Base */,
 				873330391B2CB67200FAB290 /* fr */,
+				87A209D41B7AEA96001B5651 /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
