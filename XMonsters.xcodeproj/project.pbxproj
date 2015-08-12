@@ -20,6 +20,7 @@
 		876CA76B1B4E1B8D006B3989 /* libFlurry_6.6.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 876CA76A1B4E1B8D006B3989 /* libFlurry_6.6.0.a */; };
 		876CA76E1B4E2514006B3989 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 876CA76D1B4E2514006B3989 /* Security.framework */; };
 		876CA7711B4E2556006B3989 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 876CA7701B4E2556006B3989 /* SystemConfiguration.framework */; };
+		87A209D21B7AE6C5001B5651 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A209D11B7AE6C5001B5651 /* APIKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		876CA76C1B4E1BD7006B3989 /* XMonsters-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XMonsters-Bridging-Header.h"; sourceTree = "<group>"; };
 		876CA76D1B4E2514006B3989 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		876CA7701B4E2556006B3989 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		87A209D11B7AE6C5001B5651 /* APIKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				873330361B2CB66800FAB290 /* Localizable.strings */,
 				871573FC1ACBB946004FFCFA /* Info.plist */,
 				876CA76C1B4E1BD7006B3989 /* XMonsters-Bridging-Header.h */,
+				87A209D11B7AE6C5001B5651 /* APIKeys.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87A209D21B7AE6C5001B5651 /* APIKeys.swift in Sources */,
 				871574001ACBB946004FFCFA /* AreasViewController.swift in Sources */,
 				871574201ACBBB01004FFCFA /* DataModel.swift in Sources */,
 				8715741E1ACBBAEB004FFCFA /* MonstersViewController.swift in Sources */,
