@@ -55,16 +55,8 @@ class AboutViewController: UITableViewController {
   }
   
   func presentAppStore() {
-    let storeController = SKStoreProductViewController()
-    storeController.delegate = self
-    storeController.loadProductWithParameters([SKStoreProductParameterITunesItemIdentifier: "981939574"]) { (result: Bool, error: NSError!) -> Void in
-      if result {
-        Flurry.logEvent("present_app_store", timed: true)
-        self.presentViewController(storeController, animated: true, completion: nil)
-      } else {
-        Flurry.logError("app_store_error", message: error.localizedDescription, error: error)
-      }
-    }
+    Flurry.logEvent("present_app_store")
+    UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/app/id981939574")!)
   }
   
   func presentTwitter() {
