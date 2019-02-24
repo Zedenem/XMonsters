@@ -1,0 +1,7 @@
+app_identifier("com.zedenem.XMonsters")     # The bundle identifier of your app
+apple_id("zouhair.mahieddine@gmail.com")    # Your Apple email address
+itc_team_name("Zouhair Mahieddine")         # Your App Store Connect team
+
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
