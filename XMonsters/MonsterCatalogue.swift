@@ -9,7 +9,8 @@ struct CaptureMonster: Identifiable, Sendable {
     let zoneID: String
 
     func localizedName(bundle: Bundle = .main) -> String {
-        bundle.localizedString(forKey: localizationKey, value: frenchName, table: nil)
+        if bundle.preferredLocalizations.first?.hasPrefix("fr") == true { return frenchName }
+        return bundle.localizedString(forKey: localizationKey, value: frenchName, table: nil)
     }
 }
 
@@ -186,4 +187,3 @@ struct CaptureSummary: Equatable {
         missingMonsterIDs = zip(monsterIDs, values).filter { $0.1 < threshold }.map { $0.0 }
     }
 }
-

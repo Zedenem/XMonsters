@@ -7,6 +7,13 @@ final class XMonstersTests: XCTestCase {
         XCTAssertEqual(AppIdentity.name, "XMonsters")
     }
 
+    func testCaptureSearchSupportsFrenchAccentsAndTranslations() {
+        XCTAssertTrue(CaptureSearch.matches("  elementaire  ", names: ["Élémentaire jaune"]))
+        XCTAssertTrue(CaptureSearch.matches("killer", names: ["Abeille tueuse", "Killer Bee"]))
+        XCTAssertTrue(CaptureSearch.matches("", names: ["Dingo"]))
+        XCTAssertFalse(CaptureSearch.matches("Condor", names: ["Dingo"]))
+    }
+
     private func withDefaults(_ body: (UserDefaults) throws -> Void) rethrows {
         let suite = "XMonstersTests.\(UUID().uuidString)"
         let defaults = UserDefaults(suiteName: suite)!
