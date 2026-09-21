@@ -17,6 +17,9 @@ DerivedData
 *.ipa
 *.xcuserstate
 
+# Obsolete CocoaPods workspace (open XMonsters.xcodeproj instead)
+/XMonsters.xcworkspace/
+
 # Swift Package Manager
 .build/
 .swiftpm/
