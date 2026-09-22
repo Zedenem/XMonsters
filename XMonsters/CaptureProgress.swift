@@ -1,8 +1,10 @@
 import Foundation
+import Observation
 
 /// Local-only storage. A single versioned payload also acts as the migration marker.
 /// Legacy keys are retained so migration never destroys the original save.
 @MainActor
+@Observable
 final class CaptureProgress {
     static let storageKey = "com.zedenem.XMonsters.captureProgress.v1"
 
