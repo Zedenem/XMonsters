@@ -80,8 +80,18 @@ private struct CaptureList: View {
             ForEach(MonsterCatalogue.zones) { zone in
                 let visible = monsters(in: zone)
                 if !visible.isEmpty {
-                    Section(zone.localizedName) {
+                    Section {
                         ForEach(visible) { CaptureRow(monster: $0, progress: progress) }
+                    } header: {
+                        let summary = progress.summary(for: zone)
+                        HStack {
+                            Text(zone.localizedName)
+                            Spacer()
+                            Text("\(summary.completedSpecies)/\(summary.completedSpecies + summary.missingMonsterIDs.count)")
+                                .monospacedDigit()
+                                .accessibilityLabel(String(format: ui("%d of %d species complete"),
+                                    summary.completedSpecies, summary.completedSpecies + summary.missingMonsterIDs.count))
+                        }
                     }
                 }
             }
@@ -95,35 +105,90 @@ private struct CaptureList: View {
     }
 }
 
+enum CaptureVisualState: Equatable {
+    case uncaught, inProgress, complete
+
+    init(count: Int) {
+        self = count <= 0 ? .uncaught : (count >= 10 ? .complete : .inProgress)
+    }
+
+    var symbol: String {
+        switch self {
+        case .uncaught: "circle.dashed"
+        case .inProgress: "circle.lefthalf.filled"
+        case .complete: "checkmark.circle.fill"
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .uncaught: ui("Not caught")
+        case .inProgress: ui("In progress")
+        case .complete: ui("Complete")
+        }
+    }
+
+    var color: Color {
+        switch self {
+        case .uncaught: .secondary
+        case .inProgress: .orange
+        case .complete: .green
+        }
+    }
+}
+
+extension CaptureMonster {
+    var captureFamily: CaptureFamily? {
+        MonsterCatalogue.families.first { $0.monsterIDs.contains(id) }
+    }
+
+    func familyGoalReached(count: Int) -> Bool {
+        guard let family = captureFamily else { return false }
+        return count >= family.threshold
+    }
+}
+
 private struct CaptureRow: View {
     let monster: CaptureMonster
     let progress: CaptureProgress
     @State private var saveFailed = false
 
+    private var count: Int { progress.count(for: monster.id) }
+    private var state: CaptureVisualState { CaptureVisualState(count: count) }
+
     var body: some View {
         Stepper(value: Binding(
-            get: { progress.count(for: monster.id) },
+            get: { count },
             set: { value in
                 do { try progress.setCount(value, for: monster.id) }
                 catch { saveFailed = true }
             }
         ), in: 0...10) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(monster.localizedName())
-                HStack {
-                    Text("\(progress.count(for: monster.id)) / 10").monospacedDigit()
-                    if progress.count(for: monster.id) == 10 {
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundStyle(.green)
-                            .accessibilityLabel(ui("Complete"))
-                    }
+            VStack(alignment: .leading, spacing: 6) {
+                Text(monster.localizedName()).fontWeight(count == 10 ? .semibold : .regular)
+                Label("\(count) / 10 · \(state.title)", systemImage: state.symbol)
+                    .font(.caption).monospacedDigit().foregroundStyle(state.color)
+                ProgressView(value: Double(count), total: 10)
+                    .tint(state.color)
+                    .accessibilityHidden(true)
+                if let family = monster.captureFamily {
+                    let reached = monster.familyGoalReached(count: count)
+                    Label(String(format: ui(reached ? "Family goal reached (%d)" : "Family goal pending (%d)"),
+                                 family.threshold),
+                          systemImage: reached ? "medal.fill" : "medal")
+                        .font(.caption2)
+                        .foregroundStyle(reached ? Color.purple : Color.secondary)
                 }
-                .font(.caption)
-                .foregroundStyle(.secondary)
             }
+            .padding(.vertical, 4)
         }
+        .listRowBackground(state.color.opacity(0.08))
         .accessibilityLabel(monster.localizedName())
-        .accessibilityValue("\(progress.count(for: monster.id)) / 10")
+        .accessibilityValue("\(count) / 10 · \(state.title)")
+        .accessibilityHint(monster.captureFamily.map {
+            String(format: ui(monster.familyGoalReached(count: count)
+                ? "Family goal reached (%d)" : "Family goal pending (%d)"), $0.threshold)
+        } ?? "")
         .alert(ui("Could not save"), isPresented: $saveFailed) {
             Button(ui("OK"), role: .cancel) { }
         } message: {
@@ -162,7 +227,7 @@ private struct ProgressionView: View {
                     NavigationLink {
                         ProgressGroupView(title: zone.localizedName,
                                           monsterIDs: MonsterCatalogue.monsters.filter { $0.zoneID == zone.id }.map(\.id),
-                                          challenge: nil, progress: progress)
+                                          challenge: nil, reward: ArenaRewards.zones[zone.id], progress: progress)
                     } label: {
                         groupLabel(zone.localizedName, summary: progress.summary(for: zone))
                     }
@@ -173,7 +238,7 @@ private struct ProgressionView: View {
                     NavigationLink {
                         ProgressGroupView(title: family.frenchName + " — " + family.creationName,
                                           monsterIDs: family.monsterIDs, challenge: family.threshold,
-                                          progress: progress)
+                                          reward: ArenaRewards.families[family.id], progress: progress)
                     } label: {
                         groupLabel(family.frenchName + " — " + family.creationName,
                                    summary: progress.summary(for: family))
@@ -197,40 +262,25 @@ private struct ProgressGroupView: View {
     let title: String
     let monsterIDs: [String]
     let challenge: Int?
+    let reward: ArenaReward?
     let progress: CaptureProgress
-    @State private var threshold: Int
-
-    init(title: String, monsterIDs: [String], challenge: Int?, progress: CaptureProgress) {
-        self.title = title
-        self.monsterIDs = monsterIDs
-        self.challenge = challenge
-        self.progress = progress
-        _threshold = State(initialValue: challenge ?? 1)
-    }
-
-    private var summary: CaptureSummary {
-        CaptureSummary(monsterIDs: monsterIDs, counts: progress.counts, threshold: threshold)
-    }
 
     var body: some View {
         List {
-            Section {
-                Picker(ui("Goal"), selection: $threshold) {
-                    Text(ui("One each")).tag(1)
-                    if let challenge, challenge != 10 {
-                        Text(String(format: ui("Challenge (%d)"), challenge)).tag(challenge)
-                    }
-                    Text(ui("Ten each")).tag(10)
+            Section(ui("Goals and rewards")) {
+                goal(threshold: challenge ?? 1, reward: reward)
+                if challenge != 10 {
+                    goal(threshold: 10, reward: nil)
                 }
-                SummaryRow(summary: summary)
+                Text(ui("Capture requirements only; collect rewards from the arena owner."))
+                    .font(.caption).foregroundStyle(.secondary)
+                if reward != nil {
+                    Link(ui("Reward source (English)"), destination: ArenaRewards.source)
+                }
             }
-            Section(ui("Missing monsters")) {
-                if summary.missingMonsterIDs.isEmpty {
-                    Label(ui("Goal complete"), systemImage: "checkmark.circle")
-                }
+            Section(ui("All monsters")) {
                 ForEach(monsterIDs, id: \.self) { id in
-                    if summary.missingMonsterIDs.contains(id),
-                       let monster = MonsterCatalogue.monsters.first(where: { $0.id == id }) {
+                    if let monster = MonsterCatalogue.monsters.first(where: { $0.id == id }) {
                         CaptureRow(monster: monster, progress: progress)
                     }
                 }
@@ -238,6 +288,26 @@ private struct ProgressGroupView: View {
         }
         .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private func goal(threshold: Int, reward: ArenaReward?) -> some View {
+        let summary = CaptureSummary(monsterIDs: monsterIDs, counts: progress.counts, threshold: threshold)
+        return VStack(alignment: .leading, spacing: 8) {
+            Label(String(format: ui("Capture %d of each monster"), threshold),
+                  systemImage: summary.missingCaptures == 0 ? "checkmark.seal.fill" : "seal")
+                .font(.headline)
+            Text(String(format: ui("%d captures remaining"), summary.missingCaptures))
+                .font(.subheadline).foregroundStyle(.secondary)
+            if let reward {
+                Text(ui("Reward (English name):") + " " + reward.item)
+                Text(ui("Arena unlock (English name):") + " " + reward.unlock)
+                if let note = reward.note { Text(ui(note)).font(.caption) }
+            } else {
+                Text(ui("Collection goal. No separate reward for completing ten in this group alone."))
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+        }
+        .padding(.vertical, 6)
     }
 }
 

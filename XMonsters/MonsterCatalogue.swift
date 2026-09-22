@@ -1,5 +1,48 @@
 import Foundation
 
+struct ArenaReward: Sendable {
+    let item: String
+    let unlock: String
+    var note: String? = nil
+}
+
+/// Verified against Jegged's rewards table on 2026-09-22.
+/// English names are explicit until the French item/unlock names are verified.
+enum ArenaRewards {
+    static let source = URL(string: "https://jegged.com/Games/Final-Fantasy-X/Monster-Arena/Rewards.html")!
+    static let zones: [String: ArenaReward] = [
+        "besaid": .init(item: "Stamina Tonic ×99", unlock: "Stratoavis"),
+        "kilika": .init(item: "Poison Fang ×99", unlock: "Malboro Menace"),
+        "mi-ihen-highroad": .init(item: "Soul Spring ×99", unlock: "Kottos"),
+        "mushroom-rock-road": .init(item: "Candle of Life ×99", unlock: "Coeurlregina"),
+        "djose-road": .init(item: "Petrify Grenade ×99", unlock: "Jormungand"),
+        "thunder-plains": .init(item: "Chocobo Wing ×99", unlock: "Cactuar King"),
+        "macalania": .init(item: "Shining Gem ×60", unlock: "Espada"),
+        "bikanel": .init(item: "Shadow Gem ×99", unlock: "Abyss Worm"),
+        "calm-lands": .init(item: "Farplane Wind ×60", unlock: "Chimerageist", note: "Also reveals the Nirvana chest; the Celestial Mirror is required to open it."),
+        "stolen-fayth-cavern": .init(item: "Silver Hourglass ×40", unlock: "Don Tonberry"),
+        "mt-gagazet": .init(item: "Blossom Crown", unlock: "Catoblepas"),
+        "inside-sin": .init(item: "Lunar Curtain ×99", unlock: "Abaddon"),
+        "omega-dungeon": .init(item: "Designer Wallet ×60", unlock: "Vorban"),
+    ]
+    static let families: [String: ArenaReward] = [
+        "loups": .init(item: "Chocobo Feather ×99", unlock: "Fenrir"),
+        "reptiles": .init(item: "Stamina Spring ×99", unlock: "Ornitholestes"),
+        "oiseaux": .init(item: "Mega Phoenix ×99", unlock: "Pteryx"),
+        "insectes": .init(item: "Mana Tonic ×60", unlock: "Hornet"),
+        "mages-volants": .init(item: "Mana Spring ×99", unlock: "Vidatu"),
+        "yeux": .init(item: "Stamina Tablet ×60", unlock: "One-Eye"),
+        "flambos": .init(item: "Twin Stars ×60", unlock: "Jumbo Flan"),
+        "elementaires": .init(item: "Star Curtain ×99", unlock: "Nega Element"),
+        "carapaces": .init(item: "Gold Hourglass ×99", unlock: "Tanket"),
+        "dragons": .init(item: "Purifying Salt ×99", unlock: "Fafnir"),
+        "champignons": .init(item: "Healing Spring ×99", unlock: "Sleep Sprout"),
+        "bombos": .init(item: "Turbo Ether ×60", unlock: "Bomb King"),
+        "cornus": .init(item: "Light Curtain ×99", unlock: "Juggernaut"),
+        "geants-de-fer": .init(item: "Mana Tablet ×60", unlock: "Ironclad"),
+    ]
+}
+
 struct CaptureMonster: Identifiable, Sendable {
     // IDs are frozen persistence keys, independent of display names and ordering.
     let id: String
