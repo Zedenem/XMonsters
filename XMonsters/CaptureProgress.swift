@@ -55,6 +55,18 @@ final class CaptureProgress {
         counts = updated
     }
 
+    /// Saves an entire region in one write, without changing any other captures.
+    func markAllCaught(monsterIDs: [String]) throws {
+        guard let unknown = monsterIDs.first(where: { !knownIDs.contains($0) }) else {
+            var updated = counts
+            for id in monsterIDs { updated[id] = MonsterCatalogue.captureLimit }
+            try persist(updated)
+            counts = updated
+            return
+        }
+        throw StorageError.unknownMonster(unknown)
+    }
+
     var overall: CaptureSummary {
         CaptureSummary(monsterIDs: MonsterCatalogue.monsters.map(\.id), counts: counts)
     }

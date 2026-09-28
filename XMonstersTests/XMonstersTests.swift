@@ -45,6 +45,31 @@ final class XMonstersTests: XCTestCase {
         XCTAssertEqual(Set(ArenaRewards.families.keys), Set(MonsterCatalogue.families.map(\.id)))
         XCTAssertEqual(ArenaRewards.zones["besaid"]?.item, "Stamina Tonic ×99")
         XCTAssertEqual(ArenaRewards.zones["besaid"]?.unlock, "Stratoavis")
+        XCTAssertEqual(ArenaRewards.zones["besaid"]?.localizedItem(preferredLanguage: "fr"), "Breuvage vital ×99")
+        XCTAssertEqual(ArenaRewards.zones["besaid"]?.localizedUnlock(preferredLanguage: "fr"), "Stratoeibis")
+        XCTAssertEqual(ArenaRewards.zones["besaid"]?.localizedItem(preferredLanguage: "en"), "Stamina Tonic ×99")
+        XCTAssertEqual(ArenaRewards.families["geants-de-fer"]?.localizedItem(preferredLanguage: "fr"), "Onguent magique ×60")
+        XCTAssertEqual(MonsterCatalogue.families.first { $0.id == "geants-de-fer" }?.threshold, 5)
+        for reward in Array(ArenaRewards.zones.values) + Array(ArenaRewards.families.values) {
+            XCTAssertFalse(reward.localizedItem(preferredLanguage: "fr").isEmpty)
+            XCTAssertFalse(reward.localizedUnlock(preferredLanguage: "fr").isEmpty)
+        }
+    }
+
+    func testRegionShortcutPersistsAsOneUpdateWithoutTouchingOtherZones() throws {
+        try withDefaults { defaults in
+            let progress = try CaptureProgress(defaults: defaults)
+            let besaidIDs = MonsterCatalogue.monsters.filter { $0.zoneID == "besaid" }.map(\.id)
+            try progress.setCount(3, for: "dingo")
+            try progress.setCount(4, for: "dinonyx")
+            try progress.markAllCaught(monsterIDs: besaidIDs)
+            let reopened = try CaptureProgress(defaults: defaults)
+            XCTAssertTrue(besaidIDs.allSatisfy { reopened.count(for: $0) == 10 })
+            XCTAssertEqual(reopened.count(for: "dinonyx"), 4)
+            XCTAssertEqual(reopened.summary(for: MonsterCatalogue.zones[0]).completedSpecies, 3)
+            XCTAssertThrowsError(try progress.markAllCaught(monsterIDs: ["condor", "unknown"]))
+            XCTAssertEqual(progress.count(for: "dinonyx"), 4)
+        }
     }
 
     func testCaptureSearchSupportsFrenchAccentsAndTranslations() {

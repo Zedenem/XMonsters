@@ -2,44 +2,52 @@ import Foundation
 
 struct ArenaReward: Sendable {
     let item: String
+    let frenchItem: String
     let unlock: String
+    let frenchUnlock: String
     var note: String? = nil
+
+    func localizedItem(preferredLanguage: String = Bundle.main.preferredLocalizations.first ?? "en") -> String {
+        preferredLanguage.hasPrefix("fr") ? frenchItem : item
+    }
+
+    func localizedUnlock(preferredLanguage: String = Bundle.main.preferredLocalizations.first ?? "en") -> String {
+        preferredLanguage.hasPrefix("fr") ? frenchUnlock : unlock
+    }
 }
 
-/// Verified against Jegged's rewards table on 2026-09-22.
-/// English names are explicit until the French item/unlock names are verified.
+/// English names from Jegged; French item and unlock names from FF Heroes.
 enum ArenaRewards {
-    static let source = URL(string: "https://jegged.com/Games/Final-Fantasy-X/Monster-Arena/Rewards.html")!
     static let zones: [String: ArenaReward] = [
-        "besaid": .init(item: "Stamina Tonic ×99", unlock: "Stratoavis"),
-        "kilika": .init(item: "Poison Fang ×99", unlock: "Malboro Menace"),
-        "mi-ihen-highroad": .init(item: "Soul Spring ×99", unlock: "Kottos"),
-        "mushroom-rock-road": .init(item: "Candle of Life ×99", unlock: "Coeurlregina"),
-        "djose-road": .init(item: "Petrify Grenade ×99", unlock: "Jormungand"),
-        "thunder-plains": .init(item: "Chocobo Wing ×99", unlock: "Cactuar King"),
-        "macalania": .init(item: "Shining Gem ×60", unlock: "Espada"),
-        "bikanel": .init(item: "Shadow Gem ×99", unlock: "Abyss Worm"),
-        "calm-lands": .init(item: "Farplane Wind ×60", unlock: "Chimerageist", note: "Also reveals the Nirvana chest; the Celestial Mirror is required to open it."),
-        "stolen-fayth-cavern": .init(item: "Silver Hourglass ×40", unlock: "Don Tonberry"),
-        "mt-gagazet": .init(item: "Blossom Crown", unlock: "Catoblepas"),
-        "inside-sin": .init(item: "Lunar Curtain ×99", unlock: "Abaddon"),
-        "omega-dungeon": .init(item: "Designer Wallet ×60", unlock: "Vorban"),
+        "besaid": .init(item: "Stamina Tonic ×99", frenchItem: "Breuvage vital ×99", unlock: "Stratoavis", frenchUnlock: "Stratoeibis"),
+        "kilika": .init(item: "Poison Fang ×99", frenchItem: "Crochet venimeux ×99", unlock: "Malboro Menace", frenchUnlock: "Méga Morbol"),
+        "mi-ihen-highroad": .init(item: "Soul Spring ×99", frenchItem: "Source revigorante ×99", unlock: "Kottos", frenchUnlock: "Toki"),
+        "mushroom-rock-road": .init(item: "Candle of Life ×99", frenchItem: "Cierge de vie ×99", unlock: "Coeurlregina", frenchUnlock: "Méga Couguar"),
+        "djose-road": .init(item: "Petrify Grenade ×99", frenchItem: "Grenade pétrifiante ×99", unlock: "Jormungand", frenchUnlock: "Jormungand"),
+        "thunder-plains": .init(item: "Chocobo Wing ×99", frenchItem: "Aile de Chocobo ×99", unlock: "Cactuar King", frenchUnlock: "Pampi"),
+        "macalania": .init(item: "Shining Gem ×60", frenchItem: "Magikoroc hyalin ×60", unlock: "Espada", frenchUnlock: "Espada"),
+        "bikanel": .init(item: "Shadow Gem ×99", frenchItem: "Magikoroc noir ×99", unlock: "Abyss Worm", frenchUnlock: "Ver abyssal"),
+        "calm-lands": .init(item: "Farplane Wind ×60", frenchItem: "Souffle de l’Au-delà ×60", unlock: "Chimerageist", frenchUnlock: "Méga Chimaira", note: "Also reveals the Nirvana chest; the Celestial Mirror is required to open it."),
+        "stolen-fayth-cavern": .init(item: "Silver Hourglass ×40", frenchItem: "Sablier d’argent ×40", unlock: "Don Tonberry", frenchUnlock: "Don Tomberry"),
+        "mt-gagazet": .init(item: "Blossom Crown", frenchItem: "Tiare de bourgeons", unlock: "Catoblepas", frenchUnlock: "Catoblepas"),
+        "inside-sin": .init(item: "Lunar Curtain ×99", frenchItem: "Rideau de lune ×99", unlock: "Abaddon", frenchUnlock: "Abadon"),
+        "omega-dungeon": .init(item: "Designer Wallet ×60", frenchItem: "Portefeuille luxueux ×60", unlock: "Vorban", frenchUnlock: "Vorban"),
     ]
     static let families: [String: ArenaReward] = [
-        "loups": .init(item: "Chocobo Feather ×99", unlock: "Fenrir"),
-        "reptiles": .init(item: "Stamina Spring ×99", unlock: "Ornitholestes"),
-        "oiseaux": .init(item: "Mega Phoenix ×99", unlock: "Pteryx"),
-        "insectes": .init(item: "Mana Tonic ×60", unlock: "Hornet"),
-        "mages-volants": .init(item: "Mana Spring ×99", unlock: "Vidatu"),
-        "yeux": .init(item: "Stamina Tablet ×60", unlock: "One-Eye"),
-        "flambos": .init(item: "Twin Stars ×60", unlock: "Jumbo Flan"),
-        "elementaires": .init(item: "Star Curtain ×99", unlock: "Nega Element"),
-        "carapaces": .init(item: "Gold Hourglass ×99", unlock: "Tanket"),
-        "dragons": .init(item: "Purifying Salt ×99", unlock: "Fafnir"),
-        "champignons": .init(item: "Healing Spring ×99", unlock: "Sleep Sprout"),
-        "bombos": .init(item: "Turbo Ether ×60", unlock: "Bomb King"),
-        "cornus": .init(item: "Light Curtain ×99", unlock: "Juggernaut"),
-        "geants-de-fer": .init(item: "Mana Tablet ×60", unlock: "Ironclad"),
+        "loups": .init(item: "Chocobo Feather ×99", frenchItem: "Plume de Chocobo ×99", unlock: "Fenrir", frenchUnlock: "Fenril"),
+        "reptiles": .init(item: "Stamina Spring ×99", frenchItem: "Source vitale ×99", unlock: "Ornitholestes", frenchUnlock: "Ornitholestes"),
+        "oiseaux": .init(item: "Mega Phoenix ×99", frenchItem: "Méga Phénix ×99", unlock: "Pteryx", frenchUnlock: "Ptérix"),
+        "insectes": .init(item: "Mana Tonic ×60", frenchItem: "Breuvage magique ×60", unlock: "Hornet", frenchUnlock: "Frelon"),
+        "mages-volants": .init(item: "Mana Spring ×99", frenchItem: "Source magique ×99", unlock: "Vidatu", frenchUnlock: "Wizarsha"),
+        "yeux": .init(item: "Stamina Tablet ×60", frenchItem: "Onguent vital ×60", unlock: "One-Eye", frenchUnlock: "Lieo Nukan"),
+        "flambos": .init(item: "Twin Stars ×60", frenchItem: "Bistella ×60", unlock: "Jumbo Flan", frenchUnlock: "Jumbo Flambos"),
+        "elementaires": .init(item: "Star Curtain ×99", frenchItem: "Rideau d’étoiles ×99", unlock: "Nega Element", frenchUnlock: "Néga Élémentaire"),
+        "carapaces": .init(item: "Gold Hourglass ×99", frenchItem: "Sablier d’or ×99", unlock: "Tanket", frenchUnlock: "Tankujo"),
+        "dragons": .init(item: "Purifying Salt ×99", frenchItem: "Sel purificateur ×99", unlock: "Fafnir", frenchUnlock: "Fafnir"),
+        "champignons": .init(item: "Healing Spring ×99", frenchItem: "Source régénérante ×99", unlock: "Sleep Sprout", frenchUnlock: "Soporichamp"),
+        "bombos": .init(item: "Turbo Ether ×60", frenchItem: "Éther + ×60", unlock: "Bomb King", frenchUnlock: "Atomico"),
+        "cornus": .init(item: "Light Curtain ×99", frenchItem: "Rideau de lumière ×99", unlock: "Juggernaut", frenchUnlock: "Juggernaut"),
+        "geants-de-fer": .init(item: "Mana Tablet ×60", frenchItem: "Onguent magique ×60", unlock: "Ironclad", frenchUnlock: "Titan d’acier"),
     ]
 }
 
@@ -208,7 +216,7 @@ enum MonsterCatalogue {
         .init(id: "champignons", frenchName: "Champignons", creationName: "Soporichamp", threshold: 5, monsterIDs: ["fungus", "thorn", "exoray"]),
         .init(id: "bombos", frenchName: "Bombos", creationName: "Atomico", threshold: 5, monsterIDs: ["bombo", "grenada", "pyrobolse"]),
         .init(id: "cornus", frenchName: "Cornus", creationName: "Juggernaut", threshold: 5, monsterIDs: ["bicorne", "varaha", "grendel"]),
-        .init(id: "geants-de-fer", frenchName: "Géants de fer", creationName: "Titan d’acier", threshold: 10, monsterIDs: ["ekarissor", "gemini-b", "gemini-a"]),
+        .init(id: "geants-de-fer", frenchName: "Géants de fer", creationName: "Titan d’acier", threshold: 5, monsterIDs: ["ekarissor", "gemini-b", "gemini-a"]),
     ]
 }
 

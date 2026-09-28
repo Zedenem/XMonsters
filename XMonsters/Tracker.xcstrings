@@ -1,6 +1,38 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Mark as all caught": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Mark as all caught" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Marquer 10 captures" } },
+        "it": { "stringUnit": { "state": "translated", "value": "Segna 10 catture" } }
+      }
+    },
+    "Mark region as all caught": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Mark region as all caught" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Marquer toute la zone à 10 captures" } },
+        "it": { "stringUnit": { "state": "translated", "value": "Segna tutta la zona a 10 catture" } }
+      }
+    },
+    "Reward:": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Reward:" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Récompense :" } },
+        "it": { "stringUnit": { "state": "translated", "value": "Ricompensa:" } }
+      }
+    },
+    "Arena unlock:": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Arena unlock:" } },
+        "fr": { "stringUnit": { "state": "translated", "value": "Création débloquée :" } },
+        "it": { "stringUnit": { "state": "translated", "value": "Creazione sbloccata:" } }
+      }
+    },
     "Captures": {
       "extractionState": "manual",
       "localizations": {

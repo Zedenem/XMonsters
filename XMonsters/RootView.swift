@@ -130,7 +130,7 @@ enum CaptureVisualState: Equatable {
 
     var color: Color {
         switch self {
-        case .uncaught: .secondary
+        case .uncaught: .primary
         case .inProgress: .orange
         case .complete: .green
         }
@@ -182,7 +182,15 @@ private struct CaptureRow: View {
             }
             .padding(.vertical, 4)
         }
-        .listRowBackground(state.color.opacity(0.08))
+        .contextMenu {
+            Button {
+                do { try progress.markAllCaught(monsterIDs: [monster.id]) }
+                catch { saveFailed = true }
+            } label: {
+                Label(ui("Mark as all caught"), systemImage: "checkmark.circle.fill")
+            }
+            .disabled(count == MonsterCatalogue.captureLimit)
+        }
         .accessibilityLabel(monster.localizedName())
         .accessibilityValue("\(count) / 10 · \(state.title)")
         .accessibilityHint(monster.captureFamily.map {
@@ -224,13 +232,7 @@ private struct ProgressionView: View {
             Section(ui("Overall")) { SummaryRow(summary: progress.overall) }
             Section(ui("Zones")) {
                 ForEach(MonsterCatalogue.zones) { zone in
-                    NavigationLink {
-                        ProgressGroupView(title: zone.localizedName,
-                                          monsterIDs: MonsterCatalogue.monsters.filter { $0.zoneID == zone.id }.map(\.id),
-                                          challenge: nil, reward: ArenaRewards.zones[zone.id], progress: progress)
-                    } label: {
-                        groupLabel(zone.localizedName, summary: progress.summary(for: zone))
-                    }
+                    RegionRow(zone: zone, progress: progress)
                 }
             }
             Section(ui("Family challenges")) {
@@ -258,6 +260,44 @@ private struct ProgressionView: View {
     }
 }
 
+private struct RegionRow: View {
+    let zone: CaptureZone
+    let progress: CaptureProgress
+    @State private var saveFailed = false
+
+    private var monsters: [CaptureMonster] {
+        MonsterCatalogue.monsters.filter { $0.zoneID == zone.id }
+    }
+
+    var body: some View {
+        NavigationLink {
+            ProgressGroupView(title: zone.localizedName,
+                              monsterIDs: monsters.map(\.id),
+                              challenge: nil, reward: ArenaRewards.zones[zone.id], progress: progress)
+        } label: {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(zone.localizedName)
+                Text(String(format: ui("%d captures remaining"), progress.summary(for: zone).missingCaptures))
+                    .font(.caption).foregroundStyle(.secondary)
+            }
+        }
+        .contextMenu {
+            Button {
+                do { try progress.markAllCaught(monsterIDs: monsters.map(\.id)) }
+                catch { saveFailed = true }
+            } label: {
+                Label(ui("Mark region as all caught"), systemImage: "checkmark.circle.fill")
+            }
+            .disabled(progress.summary(for: zone).completedSpecies == monsters.count)
+        }
+        .alert(ui("Could not save"), isPresented: $saveFailed) {
+            Button(ui("OK"), role: .cancel) { }
+        } message: {
+            Text(ui("The change was not applied. Try again."))
+        }
+    }
+}
+
 private struct ProgressGroupView: View {
     let title: String
     let monsterIDs: [String]
@@ -274,9 +314,6 @@ private struct ProgressGroupView: View {
                 }
                 Text(ui("Capture requirements only; collect rewards from the arena owner."))
                     .font(.caption).foregroundStyle(.secondary)
-                if reward != nil {
-                    Link(ui("Reward source (English)"), destination: ArenaRewards.source)
-                }
             }
             Section(ui("All monsters")) {
                 ForEach(monsterIDs, id: \.self) { id in
@@ -299,8 +336,8 @@ private struct ProgressGroupView: View {
             Text(String(format: ui("%d captures remaining"), summary.missingCaptures))
                 .font(.subheadline).foregroundStyle(.secondary)
             if let reward {
-                Text(ui("Reward (English name):") + " " + reward.item)
-                Text(ui("Arena unlock (English name):") + " " + reward.unlock)
+                Text(ui("Reward:") + " " + reward.localizedItem())
+                Text(ui("Arena unlock:") + " " + reward.localizedUnlock())
                 if let note = reward.note { Text(ui(note)).font(.caption) }
             } else {
                 Text(ui("Collection goal. No separate reward for completing ten in this group alone."))
@@ -324,6 +361,8 @@ private struct AboutView: View {
             Section(ui("Sources")) {
                 Link("FF World", destination: URL(string: "http://www.ffworld.com/?rub=ff10&page=q_arene")!)
                 Link("Final Fantasy Wiki", destination: URL(string: "https://finalfantasy.fandom.com/wiki/Monster_Arena")!)
+                Link("FF Heroes · Centre d’entraînement", destination: URL(string: "https://www.ff-heroes.com/final-fantasy-x/quetes/le-centre-dentrainement-des-monstres.html")!)
+                Link("Jegged · Monster Arena rewards", destination: URL(string: "https://jegged.com/Games/Final-Fantasy-X/Monster-Arena/Rewards.html")!)
             }
             Section(ui("Sync")) {
                 Text(ui("Progress is saved on this device. Optional account sync is planned for v2."))
