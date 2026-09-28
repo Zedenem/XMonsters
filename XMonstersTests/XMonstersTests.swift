@@ -7,6 +7,78 @@ final class XMonstersTests: XCTestCase {
         XCTAssertEqual(AppIdentity.name, "XMonsters")
     }
 
+    func testCaptureVisualStatesAtBoundaries() {
+        XCTAssertEqual(CaptureVisualState(count: 0), .uncaught)
+        for count in 1...9 { XCTAssertEqual(CaptureVisualState(count: count), .inProgress) }
+        XCTAssertEqual(CaptureVisualState(count: 10), .complete)
+    }
+
+    func testIndividualFamilyMilestones() throws {
+        for family in MonsterCatalogue.families {
+            for id in family.monsterIDs {
+                let monster = try XCTUnwrap(MonsterCatalogue.monsters.first { $0.id == id })
+                XCTAssertFalse(monster.familyGoalReached(count: family.threshold - 1))
+                XCTAssertTrue(monster.familyGoalReached(count: family.threshold))
+            }
+        }
+        let monster = try XCTUnwrap(MonsterCatalogue.monsters.first { $0.id == "balsamine" })
+        XCTAssertNil(monster.captureFamily)
+        XCTAssertFalse(monster.familyGoalReached(count: 10))
+    }
+
+    func testAreaCompletionCountsOnlyTenCaptures() throws {
+        try withDefaults { defaults in
+            let progress = try CaptureProgress(defaults: defaults)
+            let besaid = try XCTUnwrap(MonsterCatalogue.zones.first { $0.id == "besaid" })
+            try progress.setCount(9, for: "dingo")
+            try progress.setCount(1, for: "condor")
+            XCTAssertEqual(progress.summary(for: besaid).completedSpecies, 0)
+            try progress.setCount(10, for: "dingo")
+            let summary = progress.summary(for: besaid)
+            XCTAssertEqual(summary.completedSpecies, 1)
+            XCTAssertEqual(summary.completedSpecies + summary.missingMonsterIDs.count, 3)
+        }
+    }
+
+    func testRewardCoverage() {
+        XCTAssertEqual(Set(ArenaRewards.zones.keys), Set(MonsterCatalogue.zones.map(\.id)))
+        XCTAssertEqual(Set(ArenaRewards.families.keys), Set(MonsterCatalogue.families.map(\.id)))
+        XCTAssertEqual(ArenaRewards.zones["besaid"]?.item, "Stamina Tonic ×99")
+        XCTAssertEqual(ArenaRewards.zones["besaid"]?.unlock, "Stratoavis")
+        XCTAssertEqual(ArenaRewards.zones["besaid"]?.localizedItem(preferredLanguage: "fr"), "Breuvage vital ×99")
+        XCTAssertEqual(ArenaRewards.zones["besaid"]?.localizedUnlock(preferredLanguage: "fr"), "Stratoeibis")
+        XCTAssertEqual(ArenaRewards.zones["besaid"]?.localizedItem(preferredLanguage: "en"), "Stamina Tonic ×99")
+        XCTAssertEqual(ArenaRewards.families["geants-de-fer"]?.localizedItem(preferredLanguage: "fr"), "Onguent magique ×60")
+        XCTAssertEqual(MonsterCatalogue.families.first { $0.id == "geants-de-fer" }?.threshold, 5)
+        for reward in Array(ArenaRewards.zones.values) + Array(ArenaRewards.families.values) {
+            XCTAssertFalse(reward.localizedItem(preferredLanguage: "fr").isEmpty)
+            XCTAssertFalse(reward.localizedUnlock(preferredLanguage: "fr").isEmpty)
+        }
+    }
+
+    func testRegionShortcutPersistsAsOneUpdateWithoutTouchingOtherZones() throws {
+        try withDefaults { defaults in
+            let progress = try CaptureProgress(defaults: defaults)
+            let besaidIDs = MonsterCatalogue.monsters.filter { $0.zoneID == "besaid" }.map(\.id)
+            try progress.setCount(3, for: "dingo")
+            try progress.setCount(4, for: "dinonyx")
+            try progress.markAllCaught(monsterIDs: besaidIDs)
+            let reopened = try CaptureProgress(defaults: defaults)
+            XCTAssertTrue(besaidIDs.allSatisfy { reopened.count(for: $0) == 10 })
+            XCTAssertEqual(reopened.count(for: "dinonyx"), 4)
+            XCTAssertEqual(reopened.summary(for: MonsterCatalogue.zones[0]).completedSpecies, 3)
+            XCTAssertThrowsError(try progress.markAllCaught(monsterIDs: ["condor", "unknown"]))
+            XCTAssertEqual(progress.count(for: "dinonyx"), 4)
+        }
+    }
+
+    func testCaptureSearchSupportsFrenchAccentsAndTranslations() {
+        XCTAssertTrue(CaptureSearch.matches("  elementaire  ", names: ["Élémentaire jaune"]))
+        XCTAssertTrue(CaptureSearch.matches("killer", names: ["Abeille tueuse", "Killer Bee"]))
+        XCTAssertTrue(CaptureSearch.matches("", names: ["Dingo"]))
+        XCTAssertFalse(CaptureSearch.matches("Condor", names: ["Dingo"]))
+    }
+
     private func withDefaults(_ body: (UserDefaults) throws -> Void) rethrows {
         let suite = "XMonstersTests.\(UUID().uuidString)"
         let defaults = UserDefaults(suiteName: suite)!

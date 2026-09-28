@@ -15,6 +15,8 @@
         B10000000000000000000001 = {isa = PBXBuildFile; fileRef = B20000000000000000000001; };
         B10000000000000000000002 = {isa = PBXBuildFile; fileRef = B20000000000000000000002; };
 /* End PBXBuildFile section */
+/* Tracker localization resource */
+        C10000000000000000000001 = {isa = PBXBuildFile; fileRef = C20000000000000000000001; };
 
 /* Begin PBXContainerItemProxy section */
 		A30000000000000000000001 /* PBXContainerItemProxy */ = {
@@ -41,6 +43,7 @@
         B20000000000000000000001 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonsterCatalogue.swift; sourceTree = "<group>"; };
         B20000000000000000000002 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureProgress.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+        C20000000000000000000001 = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Tracker.xcstrings; sourceTree = "<group>"; };
 
 /* Begin PBXFrameworksBuildPhase section */
 		A60000000000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
@@ -63,6 +66,7 @@
 				A20000000000000000000001 /* XMonstersApp.swift */,
 				A20000000000000000000002 /* RootView.swift */,
 				A20000000000000000000003 /* AppIdentity.swift */,
+                C20000000000000000000001,
                 B20000000000000000000001,
                 B20000000000000000000002,
 				A20000000000000000000004 /* Images.xcassets */,
@@ -164,6 +168,7 @@
 			files = (
 				A10000000000000000000004 /* Images.xcassets in Resources */,
 				A10000000000000000000005 /* Localizable.strings in Resources */,
+                C10000000000000000000001,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

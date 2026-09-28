@@ -1,8 +1,10 @@
 import Foundation
+import Observation
 
 /// Local-only storage. A single versioned payload also acts as the migration marker.
 /// Legacy keys are retained so migration never destroys the original save.
 @MainActor
+@Observable
 final class CaptureProgress {
     static let storageKey = "com.zedenem.XMonsters.captureProgress.v1"
 
@@ -51,6 +53,18 @@ final class CaptureProgress {
         updated[monsterID] = max(0, min(10, count))
         try persist(updated)
         counts = updated
+    }
+
+    /// Saves an entire region in one write, without changing any other captures.
+    func markAllCaught(monsterIDs: [String]) throws {
+        guard let unknown = monsterIDs.first(where: { !knownIDs.contains($0) }) else {
+            var updated = counts
+            for id in monsterIDs { updated[id] = MonsterCatalogue.captureLimit }
+            try persist(updated)
+            counts = updated
+            return
+        }
+        throw StorageError.unknownMonster(unknown)
     }
 
     var overall: CaptureSummary {
